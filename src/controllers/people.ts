@@ -32,17 +32,13 @@ export default {
         }
     },
 
- 
-      list: async (request: Request, response: Response) => {
+
+    list: async (request: Request, response: Response) => {
         try {
             const users = await prisma.pessoa.findMany();
             return response.status(200).json(users);
         } catch (e) {
-            if (e instanceof Prisma.PrismaClientKnownRequestError) {
-                // @ts-ignore
-                return response.status(primaErrorCodes[e.code] || 500).json(e.message);
-            }
-            return response.status(500).json("Unknown error");
+            return handleErrors(e, response);
         }
     },
 
@@ -61,18 +57,13 @@ export default {
             return response.status(201).json(user);
         }
         catch (e) {
-            if (e instanceof Prisma.PrismaClientKnownRequestError) {
-                // @ts-ignore
-                return response.status(primaErrorCodes[e.code] || 500).json(e.message);
-            }
-            return response.status(500).json("Unkown error. Try again later");
-
+            return handleErrors(e, response);
         }
 
     },
 
 
-    
+
     getById: async (request: Request, response: Response) => {
         const id = Number(request.params.id);
         if (!request.params.id || Number.isNaN(id)) {
@@ -85,12 +76,7 @@ export default {
             });
             return response.status(200).json(user);
         } catch (e) {
-            if (e instanceof Prisma.PrismaClientKnownRequestError) {
-                // @ts-ignore
-                return response.status(primaErrorCodes[e.code] || 500).json(e.message);
-            }
-            return response.status(500).json("Unkown error. Try again later");
-
+            return handleErrors(e, response);
         }
 
     },
@@ -109,19 +95,14 @@ export default {
                     nome,
                     email,
                     senha,
-                    
+
                 },
                 where: { id },
             });
             return response.status(200).json(user);
         }
         catch (e) {
-            if (e instanceof Prisma.PrismaClientKnownRequestError) {
-                // @ts-ignore
-                return response.status(primaErrorCodes[e.code] || 500).json(e.message);
-            }
-            return response.status(500).json("Unkown error. Try again later");
-
+            return handleErrors(e, response);
         }
 
     },
@@ -139,12 +120,7 @@ export default {
             return response.status(200).json(user);
         }
         catch (e) {
-            if (e instanceof Prisma.PrismaClientKnownRequestError) {
-                // @ts-ignore
-                return response.status(primaErrorCodes[e.code] || 500).json(e.message);
-            }
-            return response.status(500).json("Unkown error. Try again later");
-
+            return handleErrors(e, response);
         }
 
 

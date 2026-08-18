@@ -84,7 +84,8 @@ export const CatsScalarFieldEnum = {
   vacina: 'vacina',
   cor_raca: 'cor_raca',
   data_nascimento: 'data_nascimento',
-  numeroDeTelefone: 'numeroDeTelefone'
+  numeroDeTelefone: 'numeroDeTelefone',
+  foto: 'foto'
 } as const
 
 export type CatsScalarFieldEnum = (typeof CatsScalarFieldEnum)[keyof typeof CatsScalarFieldEnum]
@@ -96,4 +97,12 @@ export const SortOrder = {
 } as const
 
 export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
+
+
+export const NullsOrder = {
+  first: 'first',
+  last: 'last'
+} as const
+
+export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
 

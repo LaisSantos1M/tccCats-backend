@@ -28,30 +28,32 @@ export type AggregateCats = {
 
 export type CatsAvgAggregateOutputType = {
   id: number | null
-  numeroDeTelefone: number | null
+  vacina: number | null
 }
 
 export type CatsSumAggregateOutputType = {
   id: number | null
-  numeroDeTelefone: number | null
+  vacina: number | null
 }
 
 export type CatsMinAggregateOutputType = {
   id: number | null
   nome: string | null
-  vacina: string | null
+  vacina: number | null
   cor_raca: string | null
   data_nascimento: Date | null
-  numeroDeTelefone: number | null
+  numeroDeTelefone: string | null
+  foto: string | null
 }
 
 export type CatsMaxAggregateOutputType = {
   id: number | null
   nome: string | null
-  vacina: string | null
+  vacina: number | null
   cor_raca: string | null
   data_nascimento: Date | null
-  numeroDeTelefone: number | null
+  numeroDeTelefone: string | null
+  foto: string | null
 }
 
 export type CatsCountAggregateOutputType = {
@@ -61,18 +63,19 @@ export type CatsCountAggregateOutputType = {
   cor_raca: number
   data_nascimento: number
   numeroDeTelefone: number
+  foto: number
   _all: number
 }
 
 
 export type CatsAvgAggregateInputType = {
   id?: true
-  numeroDeTelefone?: true
+  vacina?: true
 }
 
 export type CatsSumAggregateInputType = {
   id?: true
-  numeroDeTelefone?: true
+  vacina?: true
 }
 
 export type CatsMinAggregateInputType = {
@@ -82,6 +85,7 @@ export type CatsMinAggregateInputType = {
   cor_raca?: true
   data_nascimento?: true
   numeroDeTelefone?: true
+  foto?: true
 }
 
 export type CatsMaxAggregateInputType = {
@@ -91,6 +95,7 @@ export type CatsMaxAggregateInputType = {
   cor_raca?: true
   data_nascimento?: true
   numeroDeTelefone?: true
+  foto?: true
 }
 
 export type CatsCountAggregateInputType = {
@@ -100,6 +105,7 @@ export type CatsCountAggregateInputType = {
   cor_raca?: true
   data_nascimento?: true
   numeroDeTelefone?: true
+  foto?: true
   _all?: true
 }
 
@@ -192,10 +198,11 @@ export type CatsGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalArg
 export type CatsGroupByOutputType = {
   id: number
   nome: string
-  vacina: string
+  vacina: number
   cor_raca: string
   data_nascimento: Date
-  numeroDeTelefone: number
+  numeroDeTelefone: string
+  foto: string | null
   _count: CatsCountAggregateOutputType | null
   _avg: CatsAvgAggregateOutputType | null
   _sum: CatsSumAggregateOutputType | null
@@ -224,10 +231,11 @@ export type CatsWhereInput = {
   NOT?: Prisma.CatsWhereInput | Prisma.CatsWhereInput[]
   id?: Prisma.IntFilter<"Cats"> | number
   nome?: Prisma.StringFilter<"Cats"> | string
-  vacina?: Prisma.StringFilter<"Cats"> | string
+  vacina?: Prisma.IntFilter<"Cats"> | number
   cor_raca?: Prisma.StringFilter<"Cats"> | string
   data_nascimento?: Prisma.DateTimeFilter<"Cats"> | Date | string
-  numeroDeTelefone?: Prisma.IntFilter<"Cats"> | number
+  numeroDeTelefone?: Prisma.StringFilter<"Cats"> | string
+  foto?: Prisma.StringNullableFilter<"Cats"> | string | null
   pessoa?: Prisma.PessoaListRelationFilter
 }
 
@@ -238,6 +246,7 @@ export type CatsOrderByWithRelationInput = {
   cor_raca?: Prisma.SortOrder
   data_nascimento?: Prisma.SortOrder
   numeroDeTelefone?: Prisma.SortOrder
+  foto?: Prisma.SortOrderInput | Prisma.SortOrder
   pessoa?: Prisma.PessoaOrderByRelationAggregateInput
 }
 
@@ -247,10 +256,11 @@ export type CatsWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.CatsWhereInput[]
   NOT?: Prisma.CatsWhereInput | Prisma.CatsWhereInput[]
   nome?: Prisma.StringFilter<"Cats"> | string
-  vacina?: Prisma.StringFilter<"Cats"> | string
+  vacina?: Prisma.IntFilter<"Cats"> | number
   cor_raca?: Prisma.StringFilter<"Cats"> | string
   data_nascimento?: Prisma.DateTimeFilter<"Cats"> | Date | string
-  numeroDeTelefone?: Prisma.IntFilter<"Cats"> | number
+  numeroDeTelefone?: Prisma.StringFilter<"Cats"> | string
+  foto?: Prisma.StringNullableFilter<"Cats"> | string | null
   pessoa?: Prisma.PessoaListRelationFilter
 }, "id">
 
@@ -261,6 +271,7 @@ export type CatsOrderByWithAggregationInput = {
   cor_raca?: Prisma.SortOrder
   data_nascimento?: Prisma.SortOrder
   numeroDeTelefone?: Prisma.SortOrder
+  foto?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.CatsCountOrderByAggregateInput
   _avg?: Prisma.CatsAvgOrderByAggregateInput
   _max?: Prisma.CatsMaxOrderByAggregateInput
@@ -274,74 +285,82 @@ export type CatsScalarWhereWithAggregatesInput = {
   NOT?: Prisma.CatsScalarWhereWithAggregatesInput | Prisma.CatsScalarWhereWithAggregatesInput[]
   id?: Prisma.IntWithAggregatesFilter<"Cats"> | number
   nome?: Prisma.StringWithAggregatesFilter<"Cats"> | string
-  vacina?: Prisma.StringWithAggregatesFilter<"Cats"> | string
+  vacina?: Prisma.IntWithAggregatesFilter<"Cats"> | number
   cor_raca?: Prisma.StringWithAggregatesFilter<"Cats"> | string
   data_nascimento?: Prisma.DateTimeWithAggregatesFilter<"Cats"> | Date | string
-  numeroDeTelefone?: Prisma.IntWithAggregatesFilter<"Cats"> | number
+  numeroDeTelefone?: Prisma.StringWithAggregatesFilter<"Cats"> | string
+  foto?: Prisma.StringNullableWithAggregatesFilter<"Cats"> | string | null
 }
 
 export type CatsCreateInput = {
   nome: string
-  vacina: string
+  vacina: number
   cor_raca: string
   data_nascimento: Date | string
-  numeroDeTelefone: number
+  numeroDeTelefone: string
+  foto?: string | null
   pessoa?: Prisma.PessoaCreateNestedManyWithoutCatsInput
 }
 
 export type CatsUncheckedCreateInput = {
   id?: number
   nome: string
-  vacina: string
+  vacina: number
   cor_raca: string
   data_nascimento: Date | string
-  numeroDeTelefone: number
+  numeroDeTelefone: string
+  foto?: string | null
   pessoa?: Prisma.PessoaUncheckedCreateNestedManyWithoutCatsInput
 }
 
 export type CatsUpdateInput = {
   nome?: Prisma.StringFieldUpdateOperationsInput | string
-  vacina?: Prisma.StringFieldUpdateOperationsInput | string
+  vacina?: Prisma.IntFieldUpdateOperationsInput | number
   cor_raca?: Prisma.StringFieldUpdateOperationsInput | string
   data_nascimento?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  numeroDeTelefone?: Prisma.IntFieldUpdateOperationsInput | number
+  numeroDeTelefone?: Prisma.StringFieldUpdateOperationsInput | string
+  foto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   pessoa?: Prisma.PessoaUpdateManyWithoutCatsNestedInput
 }
 
 export type CatsUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   nome?: Prisma.StringFieldUpdateOperationsInput | string
-  vacina?: Prisma.StringFieldUpdateOperationsInput | string
+  vacina?: Prisma.IntFieldUpdateOperationsInput | number
   cor_raca?: Prisma.StringFieldUpdateOperationsInput | string
   data_nascimento?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  numeroDeTelefone?: Prisma.IntFieldUpdateOperationsInput | number
+  numeroDeTelefone?: Prisma.StringFieldUpdateOperationsInput | string
+  foto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   pessoa?: Prisma.PessoaUncheckedUpdateManyWithoutCatsNestedInput
 }
 
 export type CatsCreateManyInput = {
   id?: number
   nome: string
-  vacina: string
+  vacina: number
   cor_raca: string
   data_nascimento: Date | string
-  numeroDeTelefone: number
+  numeroDeTelefone: string
+  foto?: string | null
 }
 
 export type CatsUpdateManyMutationInput = {
   nome?: Prisma.StringFieldUpdateOperationsInput | string
-  vacina?: Prisma.StringFieldUpdateOperationsInput | string
+  vacina?: Prisma.IntFieldUpdateOperationsInput | number
   cor_raca?: Prisma.StringFieldUpdateOperationsInput | string
   data_nascimento?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  numeroDeTelefone?: Prisma.IntFieldUpdateOperationsInput | number
+  numeroDeTelefone?: Prisma.StringFieldUpdateOperationsInput | string
+  foto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type CatsUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   nome?: Prisma.StringFieldUpdateOperationsInput | string
-  vacina?: Prisma.StringFieldUpdateOperationsInput | string
+  vacina?: Prisma.IntFieldUpdateOperationsInput | number
   cor_raca?: Prisma.StringFieldUpdateOperationsInput | string
   data_nascimento?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  numeroDeTelefone?: Prisma.IntFieldUpdateOperationsInput | number
+  numeroDeTelefone?: Prisma.StringFieldUpdateOperationsInput | string
+  foto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type CatsListRelationFilter = {
@@ -361,11 +380,12 @@ export type CatsCountOrderByAggregateInput = {
   cor_raca?: Prisma.SortOrder
   data_nascimento?: Prisma.SortOrder
   numeroDeTelefone?: Prisma.SortOrder
+  foto?: Prisma.SortOrder
 }
 
 export type CatsAvgOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  numeroDeTelefone?: Prisma.SortOrder
+  vacina?: Prisma.SortOrder
 }
 
 export type CatsMaxOrderByAggregateInput = {
@@ -375,6 +395,7 @@ export type CatsMaxOrderByAggregateInput = {
   cor_raca?: Prisma.SortOrder
   data_nascimento?: Prisma.SortOrder
   numeroDeTelefone?: Prisma.SortOrder
+  foto?: Prisma.SortOrder
 }
 
 export type CatsMinOrderByAggregateInput = {
@@ -384,11 +405,12 @@ export type CatsMinOrderByAggregateInput = {
   cor_raca?: Prisma.SortOrder
   data_nascimento?: Prisma.SortOrder
   numeroDeTelefone?: Prisma.SortOrder
+  foto?: Prisma.SortOrder
 }
 
 export type CatsSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  numeroDeTelefone?: Prisma.SortOrder
+  vacina?: Prisma.SortOrder
 }
 
 export type CatsCreateNestedManyWithoutPessoaInput = {
@@ -433,21 +455,27 @@ export type DateTimeFieldUpdateOperationsInput = {
   set?: Date | string
 }
 
+export type NullableStringFieldUpdateOperationsInput = {
+  set?: string | null
+}
+
 export type CatsCreateWithoutPessoaInput = {
   nome: string
-  vacina: string
+  vacina: number
   cor_raca: string
   data_nascimento: Date | string
-  numeroDeTelefone: number
+  numeroDeTelefone: string
+  foto?: string | null
 }
 
 export type CatsUncheckedCreateWithoutPessoaInput = {
   id?: number
   nome: string
-  vacina: string
+  vacina: number
   cor_raca: string
   data_nascimento: Date | string
-  numeroDeTelefone: number
+  numeroDeTelefone: string
+  foto?: string | null
 }
 
 export type CatsCreateOrConnectWithoutPessoaInput = {
@@ -477,36 +505,40 @@ export type CatsScalarWhereInput = {
   NOT?: Prisma.CatsScalarWhereInput | Prisma.CatsScalarWhereInput[]
   id?: Prisma.IntFilter<"Cats"> | number
   nome?: Prisma.StringFilter<"Cats"> | string
-  vacina?: Prisma.StringFilter<"Cats"> | string
+  vacina?: Prisma.IntFilter<"Cats"> | number
   cor_raca?: Prisma.StringFilter<"Cats"> | string
   data_nascimento?: Prisma.DateTimeFilter<"Cats"> | Date | string
-  numeroDeTelefone?: Prisma.IntFilter<"Cats"> | number
+  numeroDeTelefone?: Prisma.StringFilter<"Cats"> | string
+  foto?: Prisma.StringNullableFilter<"Cats"> | string | null
 }
 
 export type CatsUpdateWithoutPessoaInput = {
   nome?: Prisma.StringFieldUpdateOperationsInput | string
-  vacina?: Prisma.StringFieldUpdateOperationsInput | string
+  vacina?: Prisma.IntFieldUpdateOperationsInput | number
   cor_raca?: Prisma.StringFieldUpdateOperationsInput | string
   data_nascimento?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  numeroDeTelefone?: Prisma.IntFieldUpdateOperationsInput | number
+  numeroDeTelefone?: Prisma.StringFieldUpdateOperationsInput | string
+  foto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type CatsUncheckedUpdateWithoutPessoaInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   nome?: Prisma.StringFieldUpdateOperationsInput | string
-  vacina?: Prisma.StringFieldUpdateOperationsInput | string
+  vacina?: Prisma.IntFieldUpdateOperationsInput | number
   cor_raca?: Prisma.StringFieldUpdateOperationsInput | string
   data_nascimento?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  numeroDeTelefone?: Prisma.IntFieldUpdateOperationsInput | number
+  numeroDeTelefone?: Prisma.StringFieldUpdateOperationsInput | string
+  foto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type CatsUncheckedUpdateManyWithoutPessoaInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   nome?: Prisma.StringFieldUpdateOperationsInput | string
-  vacina?: Prisma.StringFieldUpdateOperationsInput | string
+  vacina?: Prisma.IntFieldUpdateOperationsInput | number
   cor_raca?: Prisma.StringFieldUpdateOperationsInput | string
   data_nascimento?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  numeroDeTelefone?: Prisma.IntFieldUpdateOperationsInput | number
+  numeroDeTelefone?: Prisma.StringFieldUpdateOperationsInput | string
+  foto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 
@@ -547,6 +579,7 @@ export type CatsSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   cor_raca?: boolean
   data_nascimento?: boolean
   numeroDeTelefone?: boolean
+  foto?: boolean
   pessoa?: boolean | Prisma.Cats$pessoaArgs<ExtArgs>
   _count?: boolean | Prisma.CatsCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["cats"]>
@@ -558,6 +591,7 @@ export type CatsSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   cor_raca?: boolean
   data_nascimento?: boolean
   numeroDeTelefone?: boolean
+  foto?: boolean
 }, ExtArgs["result"]["cats"]>
 
 export type CatsSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -567,6 +601,7 @@ export type CatsSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   cor_raca?: boolean
   data_nascimento?: boolean
   numeroDeTelefone?: boolean
+  foto?: boolean
 }, ExtArgs["result"]["cats"]>
 
 export type CatsSelectScalar = {
@@ -576,9 +611,10 @@ export type CatsSelectScalar = {
   cor_raca?: boolean
   data_nascimento?: boolean
   numeroDeTelefone?: boolean
+  foto?: boolean
 }
 
-export type CatsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "nome" | "vacina" | "cor_raca" | "data_nascimento" | "numeroDeTelefone", ExtArgs["result"]["cats"]>
+export type CatsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "nome" | "vacina" | "cor_raca" | "data_nascimento" | "numeroDeTelefone" | "foto", ExtArgs["result"]["cats"]>
 export type CatsInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   pessoa?: boolean | Prisma.Cats$pessoaArgs<ExtArgs>
   _count?: boolean | Prisma.CatsCountOutputTypeDefaultArgs<ExtArgs>
@@ -594,10 +630,11 @@ export type $CatsPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
     nome: string
-    vacina: string
+    vacina: number
     cor_raca: string
     data_nascimento: Date
-    numeroDeTelefone: number
+    numeroDeTelefone: string
+    foto: string | null
   }, ExtArgs["result"]["cats"]>
   composites: {}
 }
@@ -1024,10 +1061,11 @@ export interface Prisma__CatsClient<T, Null = never, ExtArgs extends runtime.Typ
 export interface CatsFieldRefs {
   readonly id: Prisma.FieldRef<"Cats", 'Int'>
   readonly nome: Prisma.FieldRef<"Cats", 'String'>
-  readonly vacina: Prisma.FieldRef<"Cats", 'String'>
+  readonly vacina: Prisma.FieldRef<"Cats", 'Int'>
   readonly cor_raca: Prisma.FieldRef<"Cats", 'String'>
   readonly data_nascimento: Prisma.FieldRef<"Cats", 'DateTime'>
-  readonly numeroDeTelefone: Prisma.FieldRef<"Cats", 'Int'>
+  readonly numeroDeTelefone: Prisma.FieldRef<"Cats", 'String'>
+  readonly foto: Prisma.FieldRef<"Cats", 'String'>
 }
     
 
