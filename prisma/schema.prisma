@@ -23,10 +23,11 @@ model Pessoa {
 model Cats{
   id Int @id @default(autoincrement())
   nome String
-  vacina String
+  vacina Int 
   cor_raca String
   data_nascimento DateTime
-  numeroDeTelefone Int
+  numeroDeTelefone String
+  foto String?
   pessoa Pessoa[]
 }
 
